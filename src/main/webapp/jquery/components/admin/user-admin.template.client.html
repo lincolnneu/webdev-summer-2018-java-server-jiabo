@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>User Admin</title>
+
+	</head>
+<body>
+<div class="container">
+	<h1 id="title">User Admin</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Username</th>
+				<th>Password</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Role</th>
+				<th>&nbsp;</th>
+				<th></th>
+			</tr>
+
+			<tr class="wbdv-form">
+				<td><input id="usernameFld" class="form-control" placeholder="Username"/></td>
+				<td><input id="passwordFld" class="form-control" type="Password"/></td>
+				<td><input id="firstNameFld" class="form-control" placeholder="First Name"/></td>
+				<td><input id="lastNameFld" class="form-control" placeholder="Last Name"/></td>
+				<td>
+					<select id="roleFld" class="form-control">
+						<option value="FACULTY">Faculty</option>
+						<option value="STUDENT">Student</option>
+					</select>
+				</td>
+
+				<td>
+					<span class="float-right" style="white-space: nowrap">
+						<i id="searchUser" class="fa-2x fa fa-search wbdv-search"></i>
+						<i id="createUser" class="fa-2x fa fa-plus wbdv-create"></i>
+						<i id="updateUser" class="fa-2x fa fa-check wbdv-update"></i>
+  					</span>
+				</td>
+			</tr>
+
+		</thead>
+		<tbody class="wbdv-tbody">
+			<tr class="wbdv-template wbdv-user wbdv-hidden">
+				<td class="wbdv-username">alice</td>
+				<td>&nbsp;</td>
+				<td class="wbdv-first-name">Alice</td>
+				<td class="wbdv-last-name">Wonderland</td>
+				<td class="wbdv-role">FACULTY</td>
+				<td class="wbdv-actions">
+					<span class="float-right">
+						<i id="wbdv-remove" class="wbdv-remove fa-2x fa fa-times"></i>
+						<i id="wbdv-edit" class="wbdv-edit fa-2x fa fa-pencil"></i>
+					</span>
+				</td> 
+			</tr>
+
+		</tbody>
+		<tfoot></tfoot>
+	</table>
+
+</div>
+
+
+
+</body>
+</html>
