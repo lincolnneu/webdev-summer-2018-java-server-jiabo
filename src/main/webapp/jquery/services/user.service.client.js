@@ -6,7 +6,7 @@ function UserServiceClient(){
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
     this.url =
-        'http://localhost:8080/api/admin';
+        'http://localhost:8080/api/user';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
 
     function updateUser(userId, user){
