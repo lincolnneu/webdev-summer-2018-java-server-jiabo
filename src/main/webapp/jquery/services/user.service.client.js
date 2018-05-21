@@ -4,9 +4,12 @@ function UserServiceClient(){
     this.findAllUsers = findAllUsers;
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
+    this.updateProfile = updateProfile;
     this.updateUser = updateUser;
     this.register = register;
     this.login = login;
+    this.logout = logout;
+    this.getProfileUser = getProfileUser;
     this.url =
         'http://localhost:8080/api';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
@@ -26,6 +29,15 @@ function UserServiceClient(){
         });
     }
 
+    function logout(){
+        return fetch(self.url + '/logout', {
+            method: 'post',
+            credentials: 'same-origin',
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    }
 
     function updateUser(userId, user){
         return fetch(self.url + '/user/' + userId, {
@@ -43,6 +55,38 @@ function UserServiceClient(){
 
         });
     }
+
+    function updateProfile(user){
+        return fetch(self.url + '/profile/updateProfile', {
+            method: 'put',
+            body: JSON.stringify(user),
+            credentials: 'same-origin',
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function(response){
+            if(response.ok){ // here should use ok rather than bodyused.
+                return response.json();
+            }else{
+                return null;
+            }
+
+        });
+    }
+
+    function getProfileUser(){
+        return fetch(self.url + '/profile',{
+            method: 'get',
+            credentials: 'same-origin',
+            headers: {
+                'content-type': 'application/json'
+            }
+
+        }).then(function(response){
+                return response.json();
+            });
+    }
+
 
     function findUserById(userId){
         return fetch(self.url + '/user/' + userId)
