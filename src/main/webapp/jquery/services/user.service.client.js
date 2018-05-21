@@ -6,9 +6,26 @@ function UserServiceClient(){
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
     this.register = register;
+    this.login = login;
     this.url =
         'http://localhost:8080/api';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
+
+
+    function login(username, password){
+        return fetch(self.url + '/login', {
+            method: 'post',
+            body: JSON.stringify({username:username, password:password}),
+            credentials: 'same-origin',
+            headers: {
+                'content-type': 'application/json'
+            }
+
+        }).then(function(response){
+            return response.json(); // We have to convert raw response to json for further use.
+        });
+    }
+
 
     function updateUser(userId, user){
         return fetch(self.url + '/user/' + userId, {
