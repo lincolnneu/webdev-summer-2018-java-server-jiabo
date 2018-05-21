@@ -52,7 +52,8 @@ public class UserService {
 	@GetMapping("/api/profile")
 	public User profile(HttpSession session) {
 		User currentUser = (User)
-		session.getAttribute("currentUser");	
+		session.getAttribute("currentUser");
+		System.out.println(currentUser.getUsername());
 		return currentUser;
 	}
 
@@ -60,19 +61,25 @@ public class UserService {
 	public void logout
 	(HttpSession session) {
 		session.invalidate();
+		System.out.println("=============== log out success=================");
 	}
 	
 	@PostMapping("/api/login")
 	public User login(	@RequestBody User credentials, HttpSession user) {
-		Optional<User> data = repository.findUserByUserNameAndPassword(credentials.getUsername(), credentials.getPassword());
+		Optional <User> data = repository.findUserByUserNameAndPassword(credentials.getUsername(), credentials.getPassword());
 		if(data.isPresent()) {
 			User foundUser = data.get();
 			user.setAttribute("currentUser", foundUser);
-		   return foundUser;
-		  }
-		else {
+			System.out.println("===============72 login=================");
+			System.out.println(foundUser.getUsername());
+			System.out.println(user.getAttribute("currentUser"));
+			System.out.println("===============74 login=================");
+			return foundUser;
+		} else {
+			System.out.println("===============77 login failed=================");
 			return null;
 		}
+		 
 	}
 
 	// exe this function when I ask for all users. Enable get
@@ -95,6 +102,22 @@ public class UserService {
 			user.setRole(newUser.getRole());
 			repository.save(user);
 			return user;
+		}
+		return null;
+	}
+	
+	// a put mapping
+	@PutMapping("/api/profile/updateProfile")
+	public User updateProfile(@RequestBody User newUser, HttpSession session) { // RequestBody map it to a user object newUser
+		User currentUser = (User)
+				session.getAttribute("currentUser");
+		if(currentUser != null) {
+			currentUser.setPhone(newUser.getPhone());
+			currentUser.setEmail(newUser.getEmail()); // local object
+			currentUser.setRole(newUser.getRole());
+			currentUser.setDateOfBirth(newUser.getDateOfBirth());
+			repository.save(currentUser);
+			return currentUser;
 		}
 		return null;
 	}
