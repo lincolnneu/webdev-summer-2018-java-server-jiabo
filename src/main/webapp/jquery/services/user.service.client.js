@@ -5,12 +5,13 @@ function UserServiceClient(){
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.register = register;
     this.url =
-        'http://localhost:8080/api/user';
+        'http://localhost:8080/api';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
 
     function updateUser(userId, user){
-        return fetch(self.url + '/' + userId, {
+        return fetch(self.url + '/user/' + userId, {
             method: 'put',
             body: JSON.stringify(user),
             headers: {
@@ -27,14 +28,14 @@ function UserServiceClient(){
     }
 
     function findUserById(userId){
-        return fetch(self.url + '/' + userId)
+        return fetch(self.url + '/user/' + userId)
             .then(function(response){
                 return response.json();
             });
     }
 
     function deleteUser(userId){
-        return fetch(self.url + '/' + userId, {
+        return fetch(self.url + '/user/' + userId, {
             method: 'delete'
         });
     }
@@ -44,22 +45,36 @@ function UserServiceClient(){
         // default, fetch generates a get.
         // here we won't get a users, but a promise
         // register for the promise call back.
-        return fetch(self.url) // there is a return, note that two lines later there is another return
+        return fetch(self.url + '/user/') // there is a return, note that two lines later there is another return
             .then(function(response){
                 return response.json(); // We have to convert raw response to json for further use.
             });
     }
 
+
     function createUser(user){
         // send it over the server for storing
         // if fetch a post, we have to explicitly say.
-        return fetch(self.url, {
+        return fetch(self.url + '/user', {
             method: 'post',
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
             }
         }); // return a promise
+    }
+
+
+    function register(user){
+        return fetch(self.url + '/register', {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function(response){
+            return response.json(); // We have to convert raw response to json for further use.
+        });
     }
 
 }
