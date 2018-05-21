@@ -11,7 +11,7 @@ function UserServiceClient(){
     this.logout = logout;
     this.getProfileUser = getProfileUser;
     this.url =
-        'http://localhost:8080/api';
+        '/api';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
 
 
