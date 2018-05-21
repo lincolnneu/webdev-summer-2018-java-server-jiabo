@@ -34,6 +34,18 @@ public class UserService {
 		return repository.save(user); // generate a insert into db. Return the user instance
 	}
 	
+	// enable post
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user) {
+		if(findUserByUserName(user.getUsername()) == null) {
+			System.out.println("We don't have this entry. Accept");
+			return createUser(user);
+		} else {
+			System.out.println("Yes we have. Reject");
+			return null;
+		}
+	}
+	
 	
 	// exe this function when I ask for all users. Enable get
 	@GetMapping("/api/user")  // this is mapped to a get request
@@ -65,6 +77,16 @@ public class UserService {
 		if(data.isPresent()) {
 			return data.get(); //If a value is present in this Optional, returns the value, otherwise throws NoSuchElementException.
 		} // is this object not null (present)?
+		return null;
+	}
+	
+	@GetMapping("/api/register/{username}")  // this is mapped to a get request
+	public User findUserByUserName(@PathVariable("username") String username) {
+		System.out.println(username);
+		Optional<User> data = repository.findUserByUserName(username); // findUserByUserName could return null, so we should declare it as Optional from util
+		if(data.isPresent()) {
+			return data.get();
+		}
 		return null;
 	}
 	
