@@ -3,6 +3,8 @@ package webdev.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +38,10 @@ public class UserService {
 	
 	// enable post
 	@PostMapping("/api/register")
-	public User register(@RequestBody User user) {
+	public User register(@RequestBody User user, HttpSession session) {
 		if(findUserByUserName(user.getUsername()) == null) {
 			System.out.println("We don't have this entry. Accept");
+			session.setAttribute("currentUser", user);
 			return createUser(user);
 		} else {
 			System.out.println("Yes we have. Reject");
@@ -46,7 +49,32 @@ public class UserService {
 		}
 	}
 	
+	@GetMapping("/api/profile")
+	public User profile(HttpSession session) {
+		User currentUser = (User)
+		session.getAttribute("currentUser");	
+		return currentUser;
+	}
+
+	@PostMapping("/api/logout")
+	public void logout
+	(HttpSession session) {
+		session.invalidate();
+	}
 	
+	@PostMapping("/api/login")
+	public User login(	@RequestBody User credentials, HttpSession user) {
+		Optional<User> data = repository.findUserByUserNameAndPassword(credentials.getUsername(), credentials.getPassword());
+		if(data.isPresent()) {
+			User foundUser = data.get();
+			user.setAttribute("currentUser", foundUser);
+		   return foundUser;
+		  }
+		else {
+			return null;
+		}
+	}
+
 	// exe this function when I ask for all users. Enable get
 	@GetMapping("/api/user")  // this is mapped to a get request
 	public List<User> findAllUsers(){
@@ -89,6 +117,5 @@ public class UserService {
 		}
 		return null;
 	}
-	
 	
 }
