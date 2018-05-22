@@ -11,13 +11,33 @@ function UserServiceClient(){
     this.logout = logout;
     this.getProfileUser = getProfileUser;
     this.sendEmail = sendEmail;
+    this.resetPassword = resetPassword;
     this.url =
         '/api';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
 
 
-    function sendEmail(email){
-        return
+    function resetPassword(user){
+        return fetch(self.url + '/resetPassword', {
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    }
+
+
+    function sendEmail(user){
+        return fetch(self.url + '/forgotPassword', {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+
+        });
+
     }
 
     function login(username, password){
