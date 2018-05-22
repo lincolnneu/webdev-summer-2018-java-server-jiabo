@@ -41,8 +41,9 @@ public class UserService {
 	public User register(@RequestBody User user, HttpSession session) {
 		if(findUserByUserName(user.getUsername()) == null) {
 			System.out.println("We don't have this entry. Accept");
-			session.setAttribute("currentUser", user);
-			return createUser(user);
+			User newUser =  createUser(user);
+			session.setAttribute("currentUser", newUser);
+			return newUser;
 		} else {
 			System.out.println("Yes we have. Reject");
 			return null;

@@ -3,7 +3,6 @@
     var $registerBtn;
     var userService = new UserServiceClient();
     var hasTaken = false;
-    var self = this;
     $(main);
 
     function main() {
@@ -20,8 +19,6 @@
             alert("The password and verify password don't match");
         } else{
             var user = new User($usernameFld.val(),$passwordFld.val(),null,null,null,null,null,null);
-            console.log(user);
-
             userService
                     .register(user)
                     .then(success,fail);
@@ -31,6 +28,7 @@
 
     function success(){
         alert("Congratulations! You have successfully registered!");
+        location.href="../profile/profile.template.client.html";
     }
 
     function fail(){
