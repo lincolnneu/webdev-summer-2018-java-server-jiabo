@@ -1,0 +1,20 @@
+#homeworks {
+    padding-top: 20vh;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+
+.BigHeader{
+    color: white;
+    background-color: gray;
+    text-align: center;
+}
+
+
+.card{
+    width: 18rem;
+    margin: 0 auto;
+    float: none;
+}
