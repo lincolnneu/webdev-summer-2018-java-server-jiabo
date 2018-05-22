@@ -10,10 +10,15 @@ function UserServiceClient(){
     this.login = login;
     this.logout = logout;
     this.getProfileUser = getProfileUser;
+    this.sendEmail = sendEmail;
     this.url =
         '/api';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
 
+
+    function sendEmail(email){
+        return
+    }
 
     function login(username, password){
         return fetch(self.url + '/login', {
@@ -135,7 +140,12 @@ function UserServiceClient(){
                 'content-type': 'application/json'
             }
         }).then(function(response){
-            return response.json(); // We have to convert raw response to json for further use.
+            if(response != null){
+                return response.json(); // We have to convert raw response to json for further use.
+            } else{
+                return null;
+            }
+
         });
     }
 

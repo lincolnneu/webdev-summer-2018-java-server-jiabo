@@ -25,7 +25,9 @@
 
 
     function findCurUser(){
-        userService.getProfileUser().then(renderUser);
+        userService
+            .getProfileUser()
+            .then(renderUser, failFindCurUser);
     }
 
     function updateProfile(){
@@ -70,6 +72,11 @@
         $emailFld.val(user.email);
         $roleFld.val(user.role);
         $dobFld.val(user.dateOfBirth);
+    }
+
+    function failFindCurUser(){
+        alert("Please log in to view profile!");
+        location.href="../login/login.template.client.html";
     }
 
 })();

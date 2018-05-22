@@ -54,7 +54,7 @@ public class UserService {
 	public User profile(HttpSession session) {
 		User currentUser = (User)
 		session.getAttribute("currentUser");
-		System.out.println(currentUser.getUsername());
+//		System.out.println(currentUser.getUsername());
 		return currentUser;
 	}
 
