@@ -145,7 +145,6 @@
             .parent()
             .parent()
             .attr('id'); // admin id is grandgrandParentId
-        // userService.editUser(userId);
 
         findUserById(userId)
             .then(renderUser);
@@ -156,19 +155,3 @@
     }
 
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-// IIFE immediately invoked function expression
-//(function () {
-//	alert('hello world!');
-//})(); // anonymous function
