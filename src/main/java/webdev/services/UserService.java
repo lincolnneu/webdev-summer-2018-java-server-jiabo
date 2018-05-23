@@ -42,12 +42,12 @@ public class UserService {
     	        sendEmail(url, record);
     	        return new ResponseEntity<User>(HttpStatus.OK);
     	    } catch(Exception ex) {
-    	    	return new ResponseEntity<User>(HttpStatus.CONFLICT);
+    	    	return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
     	    }
 
     	} else {
 //    		System.out.println("the email does not match any record");
-    		 return new ResponseEntity<User>(HttpStatus.CONFLICT);
+    		 return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
     	}
     }    
 
@@ -75,7 +75,7 @@ public class UserService {
 		// if the username is already in use, return failure.
 		User record = findUserByUserName(user.getUsername());
 		if(record != null) {
-			return new ResponseEntity<User>(HttpStatus.CONFLICT);
+			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		} else {
 			repository.save(user);
 			return new ResponseEntity<User>(HttpStatus.OK);
@@ -93,7 +93,7 @@ public class UserService {
 			return new ResponseEntity<User>(HttpStatus.OK);
 		} else {
 //			System.out.println("Yes we have. Reject");
-			return new ResponseEntity<User>(HttpStatus.CONFLICT);
+			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -118,7 +118,7 @@ public class UserService {
 			user.setAttribute("currentUser", foundUser);
 			return new ResponseEntity<User>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<User>(HttpStatus.CONFLICT);
+			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 		}
 		 
 	}
@@ -143,7 +143,7 @@ public class UserService {
 			repository.save(user);
 			return new ResponseEntity<User>(HttpStatus.OK);
 		}
-		return new ResponseEntity<User>(HttpStatus.CONFLICT);
+		return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 	}
 	
 	// a put mapping
@@ -159,7 +159,7 @@ public class UserService {
 			repository.save(currentUser);
 			return new ResponseEntity<User>(HttpStatus.OK);
 		}
-		return new ResponseEntity<User>(HttpStatus.CONFLICT);
+		return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 	}
 	
 	// a put mapping
@@ -171,7 +171,7 @@ public class UserService {
 			repository.save(record);
 			return new ResponseEntity<User>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<User>(HttpStatus.CONFLICT); //appropriate error code
+			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST); //appropriate error code
 		}
 	    
 	}

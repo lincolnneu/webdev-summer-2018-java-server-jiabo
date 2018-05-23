@@ -11,7 +11,6 @@
 
     }
     function sendEmail() {
-        console.log($emailAddressFld.val());
         var user = new User(null,null,$emailAddressFld.val(),null,null,null,null,null);
 
         userService

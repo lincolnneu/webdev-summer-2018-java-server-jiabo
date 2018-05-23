@@ -16,9 +16,6 @@
         if($newPasswordFld.val() != $confirmNewPasswordFld.val()){
             alert("Two password are different. Please make sure they are the same.");
         } else{
-            console.log($usernameFld.val());
-            console.log($newPasswordFld.val());
-
             var user = new User($usernameFld.val(),$newPasswordFld.val(),null,null,null,null,null,null);
 
             userService
