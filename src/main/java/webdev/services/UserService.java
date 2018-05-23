@@ -185,7 +185,7 @@ public class UserService {
 		return null;
 	}
 	
-	@GetMapping("/api/register/{username}")  // this is mapped to a get request
+	@GetMapping("/api/selectUserName/{username}")  // this is mapped to a get request
 	public User findUserByUserName(@PathVariable("username") String username) {
 //		System.out.println(username);
 		Optional<User> data = repository.findUserByUserName(username); // findUserByUserName could return null, so we should declare it as Optional from util

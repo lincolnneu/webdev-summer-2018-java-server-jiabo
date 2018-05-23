@@ -11,9 +11,17 @@ function UserServiceClient(){
     this.getProfileUser = getProfileUser;
     this.sendEmail = sendEmail;
     this.resetPassword = resetPassword;
+    this.selectUserByUserName = selectUserByUserName;
     this.url =
         '/api';
     var self = this; // self refers to this instance. It will be used later. this only refers to this object, not the whole class.
+
+    function selectUserByUserName(username){
+        return fetch(self.url + '/selectUserName/' + username)
+            .then(function(response){
+                return response.json();
+            });
+    }
 
 
     function resetPassword(user){

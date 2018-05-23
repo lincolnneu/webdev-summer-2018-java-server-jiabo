@@ -123,8 +123,12 @@
     }
 
     function selectUser() {
-        console.log('select is called');
-
+        $usernameFld = $('#usernameFld').val();
+        userService
+            .selectUserByUserName($usernameFld)
+            .then(renderUser, function(){
+                alert("This username does not match any record.");
+            });
 
 
     }
