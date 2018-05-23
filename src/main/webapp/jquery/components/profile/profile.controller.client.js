@@ -3,13 +3,15 @@
 
     var userService = new UserServiceClient();
 
-    var $usernameFld, $phoneFld, $emailFld, $roleFld, $dobFld;
+    var $usernameFld, $phoneFld, $emailFld, $roleFld, $dobFld,$firstNameFld,$lastNameFld;
     var $updateBtn, $logoutBtn;
 
 
     function init(){
         // fetch admin by id
         $usernameFld = $("#usernameFld");
+        $firstNameFld = $("#firstNameFld");
+        $lastNameFld = $("#lastNameFld");
         $phoneFld = $("#phoneFld");
         $roleFld = $("#roleFld");
         $dobFld = $("#dobFld");
@@ -31,7 +33,7 @@
     }
 
     function updateProfile(){
-        var user = new User($usernameFld.val(), null, $emailFld.val(), null, null, $phoneFld.val(), $roleFld.val(), $dobFld.val());
+        var user = new User($usernameFld.val(), null, $emailFld.val(), $firstNameFld.val(), $lastNameFld.val(), $phoneFld.val(), $roleFld.val(), $dobFld.val());
         userService
             .updateProfile(user)
             .then(function(response){
@@ -61,6 +63,8 @@
 
     function renderUser(user){ // populate data into form
         $usernameFld.val(user.username); // grab to read only input field, change it to new value
+        $firstNameFld.val(user.firstName);
+        $lastNameFld.val(user.lastName);
         $phoneFld.val(user.phone);
         $emailFld.val(user.email);
         $roleFld.val(user.role);

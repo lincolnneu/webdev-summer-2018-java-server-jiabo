@@ -152,6 +152,8 @@ public class UserService {
 		User currentUser = (User)
 				session.getAttribute("currentUser");
 		if(currentUser != null) {
+			currentUser.setFirstName(newUser.getFirstName());
+			currentUser.setLastName(newUser.getLastName());
 			currentUser.setPhone(newUser.getPhone());
 			currentUser.setEmail(newUser.getEmail()); // local object
 			currentUser.setRole(newUser.getRole());
