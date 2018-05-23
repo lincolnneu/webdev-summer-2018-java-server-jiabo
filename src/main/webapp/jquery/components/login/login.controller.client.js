@@ -14,13 +14,17 @@
     function login() {
         userService
             .login($usernameFld.val(), $passwordFld.val())
-            .then(success,fail);
+            .then(function(response){
+                if(response.status == 200){
+                    success();
+                } else{
+                    fail();
+                }
+            });
     }
 
 
     function success(response){
-        var user = response;
-        console.log(user);
         alert("Congratulations! You have successfully logged in! Navigating to profile...");
         location.href="../profile/profile.template.client.html";
     }

@@ -1,6 +1,5 @@
 function UserServiceClient(){
-    this.createUser = createUser; // if the following is not defined, please comment them
-    // out, or the browser will not run this js properly.
+    this.createUser = createUser;
     this.findAllUsers = findAllUsers;
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
@@ -35,7 +34,6 @@ function UserServiceClient(){
             headers: {
                 'content-type': 'application/json'
             }
-
         });
 
     }
@@ -48,9 +46,6 @@ function UserServiceClient(){
             headers: {
                 'content-type': 'application/json'
             }
-
-        }).then(function(response){
-            return response.json(); // We have to convert raw response to json for further use.
         });
     }
 
@@ -71,13 +66,6 @@ function UserServiceClient(){
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function(response){
-            if(response.ok){ // here should use ok rather than bodyused.
-                return response.json();
-            }else{
-                return null;
-            }
-
         });
     }
 
@@ -89,13 +77,6 @@ function UserServiceClient(){
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function(response){
-            if(response.ok){ // here should use ok rather than bodyused.
-                return response.json();
-            }else{
-                return null;
-            }
-
         });
     }
 
@@ -106,7 +87,6 @@ function UserServiceClient(){
             headers: {
                 'content-type': 'application/json'
             }
-
         }).then(function(response){
                 return response.json();
             });
@@ -159,13 +139,6 @@ function UserServiceClient(){
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function(response){
-            if(response != null){
-                return response.json(); // We have to convert raw response to json for further use.
-            } else{
-                return null;
-            }
-
         });
     }
 

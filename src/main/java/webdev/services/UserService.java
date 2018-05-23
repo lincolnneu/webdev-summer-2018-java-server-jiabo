@@ -71,21 +71,29 @@ public class UserService {
 	
 	// enable post
 	@PostMapping("/api/user")
-	public User createUser(@RequestBody User user) {
-		return repository.save(user); // generate a insert into db. Return the user instance
+	public ResponseEntity<?> createUser(@RequestBody User user) {
+		// if the username is already in use, return failure.
+		User record = findUserByUserName(user.getUsername());
+		if(record != null) {
+			return new ResponseEntity<User>(HttpStatus.CONFLICT);
+		} else {
+			repository.save(user);
+			return new ResponseEntity<User>(HttpStatus.OK);
+		}
 	}
 	
 	// enable post
 	@PostMapping("/api/register")
-	public User register(@RequestBody User user, HttpSession session) {
+	public ResponseEntity<?> register(@RequestBody User user, HttpSession session) {
 		if(findUserByUserName(user.getUsername()) == null) {
 //			System.out.println("We don't have this entry. Accept");
-			User newUser =  createUser(user);
+			createUser(user);
+			User newUser = findUserByUserName(user.getUsername());
 			session.setAttribute("currentUser", newUser);
-			return newUser;
+			return new ResponseEntity<User>(HttpStatus.OK);
 		} else {
 //			System.out.println("Yes we have. Reject");
-			return null;
+			return new ResponseEntity<User>(HttpStatus.CONFLICT);
 		}
 	}
 	
@@ -103,14 +111,14 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/login")
-	public User login(	@RequestBody User credentials, HttpSession user) {
+	public ResponseEntity<?> login(	@RequestBody User credentials, HttpSession user) {
 		Optional <User> data = repository.findUserByUserNameAndPassword(credentials.getUsername(), credentials.getPassword());
 		if(data.isPresent()) {
 			User foundUser = data.get();
 			user.setAttribute("currentUser", foundUser);
-			return foundUser;
+			return new ResponseEntity<User>(HttpStatus.OK);
 		} else {
-			return null;
+			return new ResponseEntity<User>(HttpStatus.CONFLICT);
 		}
 		 
 	}
@@ -123,7 +131,7 @@ public class UserService {
 	
 	// a put mapping
 	@PutMapping("/api/user/{userId}")
-	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) { // RequestBody map it to a user object newUser
+	public ResponseEntity<?> updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) { // RequestBody map it to a user object newUser
 		// retrieve the object in the db
 		Optional<User> data = repository.findById(userId); // findById could return null, so we should declare it as Optional from util
 		if(data.isPresent()) {
@@ -133,14 +141,14 @@ public class UserService {
 			user.setPassword(newUser.getPassword());
 			user.setRole(newUser.getRole());
 			repository.save(user);
-			return user;
+			return new ResponseEntity<User>(HttpStatus.OK);
 		}
-		return null;
+		return new ResponseEntity<User>(HttpStatus.CONFLICT);
 	}
 	
 	// a put mapping
 	@PutMapping("/api/profile/updateProfile")
-	public User updateProfile(@RequestBody User newUser, HttpSession session) { // RequestBody map it to a user object newUser
+	public ResponseEntity<?> updateProfile(@RequestBody User newUser, HttpSession session) { // RequestBody map it to a user object newUser
 		User currentUser = (User)
 				session.getAttribute("currentUser");
 		if(currentUser != null) {
@@ -149,9 +157,9 @@ public class UserService {
 			currentUser.setRole(newUser.getRole());
 			currentUser.setDateOfBirth(newUser.getDateOfBirth());
 			repository.save(currentUser);
-			return currentUser;
+			return new ResponseEntity<User>(HttpStatus.OK);
 		}
-		return null;
+		return new ResponseEntity<User>(HttpStatus.CONFLICT);
 	}
 	
 	// a put mapping

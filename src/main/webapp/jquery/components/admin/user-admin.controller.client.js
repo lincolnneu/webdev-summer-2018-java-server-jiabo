@@ -36,7 +36,15 @@
 
         userService
             .createUser(user)
-            .then(findAllUsers); // enable auto refresh after creating a admin
+            .then(function(response){
+                if(response.status == 200){
+                    findAllUsers();
+                    alert("Congratulations! You just created a new user.");
+                } else{
+                    alert("The username is already taken. Please try other username");
+                }
+            });
+
     }
 
     function renderUsers(users){
@@ -103,7 +111,15 @@
 
         userService
             .updateUser(userId, user)
-            .then(findAllUsers); // enable auto refresh after creating a admin
+            .then(function(response){
+                if(response.status == 200){
+                    findAllUsers();
+                    alert("Congratulations! User update success!");
+                } else{
+                    alert("Unable to update user.");
+                }
+            });
+
     }
 
     function selectUser() {

@@ -32,10 +32,16 @@
 
     function updateProfile(){
         var user = new User($usernameFld.val(), null, $emailFld.val(), null, null, $phoneFld.val(), $roleFld.val(), $dobFld.val());
-
         userService
             .updateProfile(user)
-            .then(updateSuccess);
+            .then(function(response){
+                if(response.status == 200){
+                    alert("Profile update success!");
+                } else{
+                    alert('Unable to update the profile.');
+                }
+            });
+
     }
 
     function logout(){
@@ -44,22 +50,9 @@
             .then(logOutSuccess);
     }
 
+    function logOutSuccess(){
+        location.href="../login/login.template.client.html";
 
-    function updateSuccess(response){
-        if(response == null){
-            alert('Unable to update the profile.');
-        } else{
-            alert("Profile update success!");
-        }
-    }
-
-    function logOutSuccess(response){
-        if(response == null){
-            alert('Unable to log out.');
-        } else{
-            alert("Log out success!");
-            location.href="../login/login.template.client.html";
-        }
     }
 
     function findUserById(userId){

@@ -21,7 +21,13 @@
             var user = new User($usernameFld.val(),$passwordFld.val(),null,null,null,null,null,null);
             userService
                     .register(user)
-                    .then(success,fail);
+                    .then(function(response){
+                        if(response.status == 200){
+                            success();
+                        } else{
+                            fail();
+                        }
+            });
         }
     }
 
