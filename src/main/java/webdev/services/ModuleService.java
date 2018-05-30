@@ -22,7 +22,6 @@ public class ModuleService {
 	@Autowired
 	ModuleRepository moduleRepository;
 	@PostMapping("/api/course/{courseId}/module")
-	
 	public Module createModule(
 			@PathVariable("courseId") int courseId,
 			@RequestBody Module newModule) {

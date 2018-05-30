@@ -13,7 +13,10 @@ import webdev.models.Course;
 import webdev.repositories.CourseRepository;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600) // * means everybody
+// browser action 1: pre-flight request. Go to the server: if a javascript wants to talk to you, and it is from
+// other domain, is it ok?
+// browser action 2: They want to do a get. Are you receiving get from this domain?
 public class CourseServices {
 	@Autowired
 	CourseRepository courseRepository;
