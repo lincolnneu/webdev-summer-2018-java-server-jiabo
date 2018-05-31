@@ -17,7 +17,7 @@ import webdev.repositories.CourseRepository;
 // browser action 1: pre-flight request. Go to the server: if a javascript wants to talk to you, and it is from
 // other domain, is it ok?
 // browser action 2: They want to do a get. Are you receiving get from this domain?
-public class CourseServices {
+public class CourseService {
 	@Autowired
 	CourseRepository courseRepository;
 	
