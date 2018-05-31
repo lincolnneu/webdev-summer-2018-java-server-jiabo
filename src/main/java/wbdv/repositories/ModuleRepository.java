@@ -1,8 +1,8 @@
-package webdev.repositories;
+package wbdv.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import webdev.models.Module;
+import wbdv.models.Module;
 
 
 public interface ModuleRepository

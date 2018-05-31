@@ -1,4 +1,4 @@
-package webdev.repositories;
+package wbdv.repositories;
 
 import java.util.Optional;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import webdev.models.User;
+import wbdv.models.User;
 
 public interface UserRepository
 		extends CrudRepository<User, Integer>{ 

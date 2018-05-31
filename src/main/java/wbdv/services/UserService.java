@@ -1,4 +1,4 @@
-package webdev.services;
+package wbdv.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import webdev.models.User;
-import webdev.repositories.UserRepository;
+import wbdv.models.User;
+import wbdv.repositories.UserRepository;
 
 //mapped to some URL
 @RestController 

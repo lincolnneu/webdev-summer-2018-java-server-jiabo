@@ -1,4 +1,4 @@
-package webdev.services;
+package wbdv.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import webdev.models.Course;
-import webdev.models.Module;
-import webdev.repositories.CourseRepository;
-import webdev.repositories.ModuleRepository;
+import wbdv.models.Course;
+import wbdv.models.Module;
+import wbdv.repositories.CourseRepository;
+import wbdv.repositories.ModuleRepository;
 
 @RestController
 @CrossOrigin(origins="*", maxAge = 3600)

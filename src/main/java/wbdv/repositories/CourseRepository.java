@@ -1,8 +1,8 @@
-package webdev.repositories;
+package wbdv.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import webdev.models.Course;
+import wbdv.models.Course;
 
 public interface CourseRepository extends CrudRepository<Course, Integer>{
 
