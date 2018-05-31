@@ -15,7 +15,7 @@ public class Module {
 	private int id;
 	private String title;
 	@ManyToOne
-	@JsonIgnore
+	@JsonIgnore // browser will get infinite json. This is a break of the infinite loop. 
 	private Course course;
 	public int getId() {
 		return id;
