@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import wbdv.repositories.UserRepository;
 
 //mapped to some URL
 @RestController 
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserService {
 //retrieve all the users
 	@Autowired // instead of us instantiating repo, we ask a framework to inject it into that variable
@@ -33,6 +35,8 @@ public class UserService {
     @Autowired
     private JavaMailSender sender;
 
+    public static User curUser = null;
+    
     @PostMapping("/api/forgotPassword")
     public ResponseEntity<?> forgotPassword(HttpServletRequest request, @RequestBody User user) {
     	User record = findUserByEmail(user.getEmail());
@@ -108,6 +112,7 @@ public class UserService {
 	public void logout
 	(HttpSession session) {
 		session.invalidate();
+		curUser = null;
 	}
 	
 	@PostMapping("/api/login")
@@ -116,6 +121,7 @@ public class UserService {
 		if(data.isPresent()) {
 			User foundUser = data.get();
 			user.setAttribute("currentUser", foundUser);
+			curUser = foundUser;
 			return new ResponseEntity<User>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
@@ -128,6 +134,13 @@ public class UserService {
 	public List<User> findAllUsers(){
 		return (List<User>) repository.findAll(); // select * to user
 	}
+	
+	@GetMapping("/api/curUser")
+	public User getCurUser() {
+		if(curUser == null) return new User();
+		return curUser;
+	}
+	
 	
 	// a put mapping
 	@PutMapping("/api/user/{userId}")

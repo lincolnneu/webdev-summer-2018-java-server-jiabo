@@ -1,5 +1,7 @@
 package wbdv.services;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import wbdv.models.Course;
+import wbdv.models.User;
 import wbdv.repositories.CourseRepository;
 
 @RestController
@@ -27,7 +30,12 @@ public class CourseService {
 	}
 	
 	@PostMapping("/api/course")
-	public Course createCourse(@RequestBody Course course) {
+	public Course createCourse(@RequestBody Course course, HttpSession session) {
+		if(UserService.curUser == null) {
+			course.setOwner("Anonymous");
+		} else {
+			course.setOwner(UserService.curUser.getUsername());
+		}
 		return courseRepository.save(course);
 	}
 	
