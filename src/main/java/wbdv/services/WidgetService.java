@@ -3,6 +3,7 @@ package wbdv.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +11,7 @@ import wbdv.models.Widget;
 import wbdv.repositories.WidgetRepository;
 
 @RestController // alows us to map various endpoints to hit the db from a HTTP request
+@CrossOrigin(origins = "*") // we are accepting everyone.
 public class WidgetService {
 	@Autowired
 	WidgetRepository repository;
