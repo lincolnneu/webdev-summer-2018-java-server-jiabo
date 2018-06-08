@@ -24,6 +24,8 @@ public class WidgetService {
 	
 	@PostMapping("/api/widget/save")
 	public void saveAllWidgets(@RequestBody List<Widget> widgets) {
+		repository.deleteAll(); // delete all records before adding data passed from frontend. This 
+		// enables changes to less items.
 		for(Widget widget:widgets){
 			repository.save(widget);
 		}
