@@ -11,6 +11,13 @@ public class Widget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) // auto increment
 	private int id;
 	private String text;
+	private String widgetType;
+	public String getWidgetType() {
+		return widgetType;
+	}
+	public void setWidgetType(String widgetType) {
+		this.widgetType = widgetType;
+	}
 	public int getId() {
 		return id;
 	}
