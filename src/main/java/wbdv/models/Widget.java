@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity // an JPA entity
 public class Widget {
@@ -11,12 +14,22 @@ public class Widget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) // auto increment
 	private int id;
 	private String text;
+	@ManyToOne
+	@JsonIgnore
+	private Topic topic;
 	private int size;
 	private String dtype;
 	private String name;
 	private String widgetType;
 	private String src;
 	private String items;
+	
+	public Topic getTopic() {
+		return topic;
+	}
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
 	public int getId() {
 		return id;
 	}
