@@ -23,7 +23,14 @@ public class Widget {
 	private String widgetType;
 	private String src;
 	private String items;
+	private int listType;
 	
+	public int getListType() {
+		return listType;
+	}
+	public void setListType(int listType) {
+		this.listType = listType;
+	}
 	public Topic getTopic() {
 		return topic;
 	}

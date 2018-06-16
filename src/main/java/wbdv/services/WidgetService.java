@@ -114,6 +114,7 @@ public class WidgetService {
 			record.setText(newWidget.getText());
 			record.setTopic(newWidget.getTopic());
 			record.setWidgetType(newWidget.getWidgetType());
+			record.setListType(newWidget.getListType());
 			repository.save(record);
 			return new ResponseEntity<User>(HttpStatus.OK);
 		} else {
