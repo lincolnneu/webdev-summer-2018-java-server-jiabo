@@ -24,7 +24,15 @@ public class Widget {
 	private String src;
 	private String items;
 	private int listType;
+	private int position;
 	
+	
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
+	}
 	public int getListType() {
 		return listType;
 	}
