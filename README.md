@@ -1,11 +1,10 @@
-# hw1-jiabo
+# hw3-jiabo
 
-A simple user management app. User can login, sign up, and update his profile. Admin user can manage users. If a user forgot his password, he can also use the forgot password function to reset his password.
+Course management system -- faculty part.
 
-Frontend is implemented mainly by javascript and jquery. Backend is based on spring boot.
+Frontend is implemented mainly by react, javascript and jquery. Backend is based on spring boot. This one is backend part. Its frontend part is deployed on heroku: frontend: ```https://webdev-2018-summer-jiabo-react.herokuapp.com/```
+github: ```https://github.com/lincolnneu/module2-react```
 
 This repo has been deployed on heroku:
 
  ```https://webdev-summer-2018-lincoln.herokuapp.com/```
- 
- 
