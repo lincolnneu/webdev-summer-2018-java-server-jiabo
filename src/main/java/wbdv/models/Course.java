@@ -1,6 +1,5 @@
 package wbdv.models;
 
-import static org.assertj.core.api.Assertions.allOf;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Course {
@@ -25,6 +26,7 @@ public class Course {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
 	@OneToMany(mappedBy="course")
+	@JsonIgnore
 	private List<Module> modules;
 	public int getId() {
 		return id;

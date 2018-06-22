@@ -21,6 +21,7 @@ public class Module {
 	@JsonIgnore // browser will get infinite json. This is a break of the infinite loop. 
 	private Course course;
 	@OneToMany(mappedBy="module")
+	@JsonIgnore
 	private List<Lesson> lessons; //To support the one to many relation between Modules and lessons.
 	public int getId() {
 		return id;
