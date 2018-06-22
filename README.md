@@ -2,9 +2,14 @@
 
 Course management system -- faculty part.
 
-Frontend is implemented mainly by react, javascript and jquery. Backend is based on spring boot. This one is backend part. Its frontend part is deployed on heroku: frontend: ```https://webdev-2018-summer-jiabo-react.herokuapp.com/```
-github: ```https://github.com/lincolnneu/module2-react```
+Frontend is implemented mainly by react, javascript and jquery. Backend is based on spring boot.
 
-This repo has been deployed on heroku:
+Accomplished Bonus: Enforce widget names to be unique within a topic.
 
- ```https://webdev-summer-2018-lincoln.herokuapp.com/```
+frontend:   
+heroku:```https://webdev-2018-summer-jiabo-react.herokuapp.com/courses```  
+github: ```https://github.com/lincolnneu/module2-react/releases/tag/hw3```
+
+backend:  
+heruku: ```https://webdev-summer-2018-lincoln.herokuapp.com/```  
+github:```https://github.com/lincolnneu/webdev-summer-2018-java-server-jiabo/releases/tag/hw3```
