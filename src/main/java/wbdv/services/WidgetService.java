@@ -106,7 +106,6 @@ public class WidgetService {
 			@RequestBody Widget newWidget) { // RequestBody map it to a user object newUser
 		Widget record = findWidget(widgetId);
 		if(record != null) {
-			record.setDtype(newWidget.getDtype());
 			record.setItems(newWidget.getItems());
 			record.setName(newWidget.getName());
 			record.setSize(newWidget.getSize());
