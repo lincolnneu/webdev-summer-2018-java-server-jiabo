@@ -3,6 +3,7 @@ package wbdv.models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,11 @@ public class Exam extends Widget {
 	@OneToMany(mappedBy="exam")
 	@JsonIgnore
 	private List<Question> questions;
+	
+	@ManyToOne
+	@JsonIgnore
+	private Topic topic;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -34,5 +40,10 @@ public class Exam extends Widget {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-	
+	public Topic getTopic() {
+		return topic;
+	}
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
 }
