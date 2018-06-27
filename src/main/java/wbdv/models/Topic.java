@@ -25,6 +25,14 @@ public class Topic {
 	@JsonIgnore
 	private List<Widget> widgets;
 	
+	@OneToMany(mappedBy="topic")
+	@JsonIgnore
+	private List<Exam> exams;
+	
+	@OneToMany(mappedBy="topic")
+	@JsonIgnore
+	private List<Assignment> assignments;
+	
 	public List<Widget> getWidgets() {
 		return widgets;
 	}
@@ -48,5 +56,17 @@ public class Topic {
 	}
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
+	}
+	public List<Exam> getExams() {
+		return exams;
+	}
+	public void setExams(List<Exam> exams) {
+		this.exams = exams;
+	}
+	public List<Assignment> getAssignments() {
+		return assignments;
+	}
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
 	}
 }
