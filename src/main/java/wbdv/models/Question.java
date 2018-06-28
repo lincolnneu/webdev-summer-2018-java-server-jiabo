@@ -25,7 +25,7 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
-	private String subtitle;
+	private String description;
 	private int points;
 	private String type; // name of the table indicate the type. But name of the table
 	// never go to client. So we need to discern the type. Give this field back to client
@@ -46,14 +46,12 @@ public class Question {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getSubtitle() {
-		return subtitle;
+	public String getDescription() {
+		return description;
 	}
-	public void setSubtitle(String subtitle) {
-		this.subtitle = subtitle;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	
-	
 	public int getPoints() {
 		return points;
 	}
