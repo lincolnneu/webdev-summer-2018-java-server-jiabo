@@ -3,7 +3,6 @@ package wbdv.models;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,15 +11,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 // There is no exam table because we are using single table strategy
 // for widget.
 public class Exam extends Widget {
+
 	private String title;
 	private String description;
+	private int points;
 	@OneToMany(mappedBy="exam")
 	@JsonIgnore
 	private List<Question> questions;
-	
-	@ManyToOne
-	@JsonIgnore
-	private Topic topic;
 	
 	public String getTitle() {
 		return title;
@@ -40,10 +37,10 @@ public class Exam extends Widget {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-	public Topic getTopic() {
-		return topic;
+	public int getPoints() {
+		return points;
 	}
-	public void setTopic(Topic topic) {
-		this.topic = topic;
+	public void setPoints(int points) {
+		this.points = points;
 	}
 }

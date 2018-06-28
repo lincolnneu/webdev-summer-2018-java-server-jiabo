@@ -1,19 +1,12 @@
 package wbdv.models;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Assignment extends Widget{
 	private String title;
-	private int points;
 	private String description;
-	
-	@ManyToOne
-	@JsonIgnore
-	private Topic topic;
+	private int points;
 	
 	public String getTitle() {
 		return title;
@@ -33,11 +26,4 @@ public class Assignment extends Widget{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Topic getTopic() {
-		return topic;
-	}
-	public void setTopic(Topic topic) {
-		this.topic = topic;
-	}
-	
 }
