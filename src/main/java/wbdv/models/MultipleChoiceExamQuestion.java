@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 // As we use join strategy for Question, there will be a table for this
 // type too.
-public class MultipleChoiceQuestion extends Question{
+public class MultipleChoiceExamQuestion extends BaseExamQuestion{
 	private String options;
 	private int correctOption;
 	public String getOptions() {

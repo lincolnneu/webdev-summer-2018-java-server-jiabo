@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 // Question is going to be a base class. Just like widget is a base class.
 // Exam inherit from widget. Several types of questions are going to inherit
 // from Question.
-public class Question {
+public class BaseExamQuestion {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

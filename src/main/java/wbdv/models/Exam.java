@@ -17,7 +17,7 @@ public class Exam extends Widget {
 	private int points;
 	@OneToMany(mappedBy="exam")
 	@JsonIgnore
-	private List<Question> questions;
+	private List<BaseExamQuestion> questions;
 	
 	public String getTitle() {
 		return title;
@@ -31,10 +31,10 @@ public class Exam extends Widget {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<Question> getQuestions() {
+	public List<BaseExamQuestion> getQuestions() {
 		return questions;
 	}
-	public void setQuestions(List<Question> questions) {
+	public void setQuestions(List<BaseExamQuestion> questions) {
 		this.questions = questions;
 	}
 	public int getPoints() {
