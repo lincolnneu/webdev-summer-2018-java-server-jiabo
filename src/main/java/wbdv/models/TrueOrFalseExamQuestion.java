@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 // We are using join strategy for question. So there is a
 // table for this type of question.
-public class TrueFalseQuestion extends BaseExamQuestion{
+public class TrueOrFalseExamQuestion extends BaseExamQuestion{
 	private boolean isTrue;
 
 	public boolean isTrue() {
