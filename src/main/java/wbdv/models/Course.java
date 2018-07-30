@@ -20,6 +20,7 @@ public class Course {
 	private int id;
 	private String title;
 	private String owner;
+	private boolean isPrivate;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -39,6 +40,12 @@ public class Course {
 		this.title = title;
 	}
 	
+	public boolean isPrivate() {
+		return isPrivate;
+	}
+	public void setPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
+	}
 	public String getOwner() {
 		return owner;
 	}

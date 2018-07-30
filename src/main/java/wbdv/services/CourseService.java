@@ -54,5 +54,23 @@ public class CourseService {
 		} // is this object not null (present)?
 		return null;
 	}
+	
+	@PostMapping("/api/course/{courseId}")  // this is mapped to a get request
+	public Course findCourseByIdWithPermission(@PathVariable("courseId") int courseId
+			, @RequestBody Course enrolled){ // parse the userId to an int
+		System.out.println(enrolled.getId());
+		Optional<Course> data = courseRepository.findById(courseId); // findById could return null, so we should declare it as Optional from util
+		if(data.isPresent()) {
+			if(data.get().isPrivate() == true) {
+				if(enrolled.getId() == 1) {
+					return data.get();
+				}
+			}
+			else {
+				return data.get();
+			}
+		} // is this object not null (present)?
+		return new Course();
+	}
 
 }
